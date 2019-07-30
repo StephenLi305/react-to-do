@@ -17,6 +17,11 @@ const App = () => {
     }
   ])
   
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  }
+
   return (
     <div className="app">
       <div className="todo-list">
@@ -26,6 +31,7 @@ const App = () => {
             todo={todo} 
             index={index}/>
         ))}
+        <TodoForm addTodo={addTodo}/>
       </div>
     </div>
   )
@@ -35,8 +41,31 @@ const App = () => {
 const Todo = ({todo, index}) => {
   return(
     <div className="todo">
-      {todo.text}{index}
+      {todo.text}
     </div>
+  )
+}
+
+const TodoForm = ({addTodo}) => {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if(!value) return;
+    addTodo(value);
+    setValue('');
+  };
+
+  return(
+    <form onSubmit={handleSubmit}>
+      <input 
+        type="text"
+        className="input"
+        value={value}
+        placeholder="add things"
+        onChange={e => setValue(e.target.value)}/>
+        <button/>
+    </form>
   )
 }
 
