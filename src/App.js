@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
 
-
-
 const App = () => {
   const [lists, setList] = useState([
       [
@@ -41,6 +39,19 @@ const App = () => {
     setList(newList);
 
   }
+  
+  const addList = () => {
+    const newLists = lists;
+    console.log(lists)
+    const newList = [{
+      text: "play basketball",
+      isCompleted: false
+    }];
+    newLists.push(newList);
+    setList(newLists);
+    // console.log("hi")
+  }
+
 
 
   return(
@@ -54,7 +65,9 @@ const App = () => {
         updateList={updateList}
         />
       ))}
-      <div>add new list</div>
+      <button 
+        onClick={() => addList()}
+        className="todo-list">add new list</button>
     </div>
   )
 
@@ -90,7 +103,7 @@ const List = ({list, index, updateList}) => {
   return (
       <div className="todo-list" key={index}>
         <h3>List {index + 1}</h3>
-        {list.map((todo, index) => (
+        {todos.map((todo, index) => (
           <Todo 
             key={index} 
             todo={todo} 

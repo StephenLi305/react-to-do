@@ -2,7 +2,8 @@
   background: #209cee;
   padding: 30px;
   height: 100vh;
-  /* display: flex; */
+  display: flex;
+  flex-wrap: wrap; 
 }
 
 .todo-list {
@@ -10,6 +11,8 @@
   border-radius: 4px;
   padding: 5px;
   max-width: 400px;
+  height: fit-content;
+  margin: 15px;
 }
 
 .todo {
