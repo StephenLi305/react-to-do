@@ -22,15 +22,15 @@ const App = () => {
       ],
       [
       {
-        text: "Learn ReactHooks",
+        text: "Learn ReactHooks2",
         isCompleted: false
       },
       {
-        text: "Go get boba",
+        text: "Go get boba2",
         isCompleted: false
       },
       {
-        text: "play basketball",
+        text: "play basketball2",
         isCompleted: false
       }
     ]
@@ -73,17 +73,19 @@ const List = ({list, index, updateList}) => {
     setTodos(newTodo);
     updateList(newTodo, index)
   }
-
-  const completeTodo = index => {
+  
+  const completeTodo = todoIndex => {
     const newTodo = [...todos];
-    newTodo[index].isCompleted = true;
+    newTodo[todoIndex].isCompleted = true;
     setTodos(newTodo);
+    updateList(newTodo, index)
   }
   
-  const removeTodo = index => {
+  const removeTodo = todoIndex => {
     const newTodo = [...todos];
-    newTodo.splice(index, 1);
+    newTodo.splice(todoIndex, 1);
     setTodos(newTodo);
+    updateList(newTodo, index)
   }
   return (
       <div className="todo-list" key={index}>
