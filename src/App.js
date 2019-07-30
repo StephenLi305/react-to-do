@@ -1,7 +1,55 @@
 import React, {useState} from 'react';
 import './App.css';
 
+
+
 const App = () => {
+
+  const [lists, setList] = useState([
+      [
+        {
+          text: "Learn ReactHooks",
+          isCompleted: false
+        },
+        {
+          text: "Go get boba",
+          isCompleted: false
+        },
+        {
+          text: "play basketball",
+          isCompleted: false
+        }
+      ],
+      [
+      {
+        text: "Learn ReactHooks",
+        isCompleted: false
+      },
+      {
+        text: "Go get boba",
+        isCompleted: false
+      },
+      {
+        text: "play basketball",
+        isCompleted: false
+      }
+    ]
+  ])
+
+  return(
+    <div className="app">
+      {lists.map((list, index) => (
+        <List list={list} index={index}/>
+      ))}
+      <div>add new list</div>
+    </div>
+  )
+
+}
+
+
+
+const List = ({list, index}) => {
   const [todos, setTodos] = useState([
     {
       text:"Learn ReactHooks",
@@ -18,27 +66,24 @@ const App = () => {
   ])
   
   const addTodo = text => {
-    const newTodos = [...todos, { text }];
-    setTodos(newTodos);
+    const newTodo = [...todos, { text }];
+    setTodos(newTodo);
   }
 
   const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
-    setTodos(newTodos);
+    const newTodo = [...todos];
+    newTodo[index].isCompleted = true;
+    setTodos(newTodo);
   }
   
   const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    console.log(newTodos)
-    setTodos(newTodos);
+    const newTodo = [...todos];
+    newTodo.splice(index, 1);
+    setTodos(newTodo);
   }
-
   return (
-    <div className="app">
-      <div className="todo-list">
-        {todos.map((todo, index) => (
+      <div className="todo-list" key={index}>
+        {list.map((todo, index) => (
           <Todo 
             key={index} 
             todo={todo} 
@@ -48,9 +93,11 @@ const App = () => {
         ))}
         <TodoForm addTodo={addTodo}/>
       </div>
-    </div>
   )
 }
+
+
+
 
 
 const Todo = ({todo, index, completeTodo, removeTodo}) => {
