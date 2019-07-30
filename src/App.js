@@ -27,6 +27,13 @@ const App = () => {
     newTodos[index].isCompleted = true;
     setTodos(newTodos);
   }
+  
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    console.log(newTodos)
+    setTodos(newTodos);
+  }
 
   return (
     <div className="app">
@@ -36,6 +43,7 @@ const App = () => {
             key={index} 
             todo={todo} 
             completeTodo={completeTodo}
+            removeTodo={removeTodo}
             index={index}/>
         ))}
         <TodoForm addTodo={addTodo}/>
@@ -45,7 +53,7 @@ const App = () => {
 }
 
 
-const Todo = ({todo, index, completeTodo}) => {
+const Todo = ({todo, index, completeTodo, removeTodo}) => {
   return(
     <div 
       className="todo"
@@ -54,6 +62,7 @@ const Todo = ({todo, index, completeTodo}) => {
       {todo.text}
       <div>
         <button onClick={() => completeTodo(index)}>Complete</button>
+        <button onClick={() => removeTodo(index)}>X</button>
       </div>
     </div>
   )
