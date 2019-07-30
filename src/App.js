@@ -36,10 +36,23 @@ const App = () => {
     ]
   ])
 
+  const updateList = (list, index) => {
+    const newList = [...lists];
+    newList[index] = list;
+    setList(newList);
+
+  }
+
+
   return(
     <div className="app">
       {lists.map((list, index) => (
-        <List list={list} index={index}/>
+        <List 
+        list={list} 
+        key={index}
+        index={index}
+        updateList={updateList}
+        />
       ))}
       <div>add new list</div>
     </div>
@@ -49,25 +62,16 @@ const App = () => {
 
 
 
-const List = ({list, index}) => {
-  const [todos, setTodos] = useState([
-    {
-      text:"Learn ReactHooks",
-      isCompleted: false
-    },
-    {
-      text:"Go get boba",
-      isCompleted: false
-    },
-    {
-      text:"play basketball",
-      isCompleted: false
-    }
-  ])
-  
+const List = ({list, index, updateList}) => {
+  const [todos, setTodos] = useState(
+    list
+  )
+
+  // console.log(todos, index)
   const addTodo = text => {
     const newTodo = [...todos, { text }];
     setTodos(newTodo);
+    updateList(newTodo, index)
   }
 
   const completeTodo = index => {
