@@ -22,6 +22,12 @@ const App = () => {
     setTodos(newTodos);
   }
 
+  const completeTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true;
+    setTodos(newTodos);
+  }
+
   return (
     <div className="app">
       <div className="todo-list">
@@ -29,6 +35,7 @@ const App = () => {
           <Todo 
             key={index} 
             todo={todo} 
+            completeTodo={completeTodo}
             index={index}/>
         ))}
         <TodoForm addTodo={addTodo}/>
@@ -38,10 +45,16 @@ const App = () => {
 }
 
 
-const Todo = ({todo, index}) => {
+const Todo = ({todo, index, completeTodo}) => {
   return(
-    <div className="todo">
+    <div 
+      className="todo"
+      style={{textDecoration: todo.isCompleted ? 'line-through' : ''}}
+    >
       {todo.text}
+      <div>
+        <button onClick={() => completeTodo(index)}>Complete</button>
+      </div>
     </div>
   )
 }
@@ -62,9 +75,9 @@ const TodoForm = ({addTodo}) => {
         type="text"
         className="input"
         value={value}
-        placeholder="add things"
+        placeholder="Add things..."
         onChange={e => setValue(e.target.value)}/>
-        <button/>
+        <button>Add!</button>
     </form>
   )
 }
