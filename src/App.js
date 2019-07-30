@@ -4,7 +4,6 @@ import './App.css';
 
 
 const App = () => {
-
   const [lists, setList] = useState([
       [
         {
@@ -22,15 +21,15 @@ const App = () => {
       ],
       [
       {
-        text: "Learn ReactHooks2",
+        text: "Learn ReactHooks",
         isCompleted: false
       },
       {
-        text: "Go get boba2",
+        text: "Go get boba",
         isCompleted: false
       },
       {
-        text: "play basketball2",
+        text: "play basketball",
         isCompleted: false
       }
     ]
@@ -47,6 +46,7 @@ const App = () => {
   return(
     <div className="app">
       {lists.map((list, index) => (
+
         <List 
         list={list} 
         key={index}
@@ -76,7 +76,7 @@ const List = ({list, index, updateList}) => {
   
   const completeTodo = todoIndex => {
     const newTodo = [...todos];
-    newTodo[todoIndex].isCompleted = true;
+    newTodo[todoIndex].isCompleted = !newTodo[todoIndex].isCompleted;
     setTodos(newTodo);
     updateList(newTodo, index)
   }
@@ -89,6 +89,7 @@ const List = ({list, index, updateList}) => {
   }
   return (
       <div className="todo-list" key={index}>
+        <h3>List {index + 1}</h3>
         {list.map((todo, index) => (
           <Todo 
             key={index} 
@@ -121,6 +122,8 @@ const Todo = ({todo, index, completeTodo, removeTodo}) => {
   )
 }
 
+
+
 const TodoForm = ({addTodo}) => {
   const [value, setValue] = useState('');
 
@@ -137,7 +140,7 @@ const TodoForm = ({addTodo}) => {
         type="text"
         className="input"
         value={value}
-        placeholder="Add things..."
+        placeholder="Add new to do..."
         onChange={e => setValue(e.target.value)}/>
         <button>Add!</button>
     </form>
