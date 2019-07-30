@@ -41,18 +41,16 @@ const App = () => {
   }
   
   const addList = () => {
-    const newLists = lists;
-    console.log(lists)
+    const newLists = [...lists];
     const newList = [{
       text: "play basketball",
       isCompleted: false
     }];
     newLists.push(newList);
     setList(newLists);
+    console.log(newLists)
     // console.log("hi")
   }
-
-
 
   return(
     <div className="app">
@@ -65,9 +63,7 @@ const App = () => {
         updateList={updateList}
         />
       ))}
-      <button 
-        onClick={() => addList()}
-        className="todo-list">add new list</button>
+      <ListForm className="todo-list" addList={addList}/>
     </div>
   )
 
@@ -80,7 +76,6 @@ const List = ({list, index, updateList}) => {
     list
   )
 
-  // console.log(todos, index)
   const addTodo = text => {
     const newTodo = [...todos, { text }];
     setTodos(newTodo);
@@ -155,6 +150,21 @@ const TodoForm = ({addTodo}) => {
         value={value}
         placeholder="Add new to do..."
         onChange={e => setValue(e.target.value)}/>
+        <button>Add!</button>
+    </form>
+  )
+}
+
+const ListForm = ({addList}) => {
+  const [value, setValue] = useState('');
+  const handleSubmit = e => {
+    e.preventDefault();
+    setValue('')
+    addList();
+  };
+
+  return(
+    <form onSubmit={handleSubmit}>
         <button>Add!</button>
     </form>
   )
