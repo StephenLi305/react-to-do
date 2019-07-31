@@ -33,6 +33,8 @@ const App = () => {
     ]
   ])
 
+
+
   const updateList = (list, index) => {
     const newList = [...lists];
     newList[index] = list;
@@ -49,9 +51,18 @@ const App = () => {
     newLists.push(newList);
     setList(newLists);
     console.log(newLists)
-    // console.log("hi")
   }
 
+  const deleteList = (index) => {
+    const newLists = [...lists];
+    // newLists.splice(index, 1);
+    let first = newLists.slice(0, index);
+    let second = newLists.slice(index + 1);
+    first = first.concat(second)
+    console.log(newLists, index, first)
+    setList(first);
+  }
+  
   return(
     <div className="app">
       {lists.map((list, index) => (
@@ -61,9 +72,10 @@ const App = () => {
         key={index}
         index={index}
         updateList={updateList}
+        deleteList={deleteList}
         />
       ))}
-      <ListForm className="todo-list" addList={addList}/>
+      <button className="todo-list" onClick={() => addList()}>Add a New List!</button>
     </div>
   )
 
@@ -71,7 +83,7 @@ const App = () => {
 
 
 
-const List = ({list, index, updateList}) => {
+const List = ({list, index, updateList, deleteList}) => {
   const [todos, setTodos] = useState(
     list
   )
@@ -97,7 +109,9 @@ const List = ({list, index, updateList}) => {
   }
   return (
       <div className="todo-list" key={index}>
-        <h3>List {index + 1}</h3>
+        <h3>
+          List {index + 1}
+        </h3>
         {todos.map((todo, index) => (
           <Todo 
             key={index} 
@@ -155,20 +169,6 @@ const TodoForm = ({addTodo}) => {
   )
 }
 
-const ListForm = ({addList}) => {
-  const [value, setValue] = useState('');
-  const handleSubmit = e => {
-    e.preventDefault();
-    setValue('')
-    addList();
-  };
-
-  return(
-    <form onSubmit={handleSubmit}>
-        <button>Add!</button>
-    </form>
-  )
-}
 
 
 export default App;

@@ -13,6 +13,7 @@
   max-width: 400px;
   height: fit-content;
   margin: 15px;
+  justify-content: space-between;
 }
 
 .todo {
