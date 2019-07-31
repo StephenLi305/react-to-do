@@ -16,30 +16,20 @@ const App = () => {
           text: "play basketball",
           isCompleted: false
         }
-      ],
-      [
-      {
-        text: "Learn ReactHooks",
-        isCompleted: false
-      },
-      {
-        text: "Go get boba",
-        isCompleted: false
-      },
-      {
-        text: "play basketball",
-        isCompleted: false
-      }
-    ]
+      ]
   ])
 
+  // useEffect(() => {
+  //   console.log('deleted')
+  // })
 
 
   const updateList = (list, index) => {
-    const newList = [...lists];
-    newList[index] = list;
-    setList(newList);
-
+    const newLists = [...lists];
+    newLists[index] = list;
+    setList(newLists);
+    console.log(list)
+    console.log(newLists)
   }
   
   const addList = () => {
@@ -56,24 +46,22 @@ const App = () => {
   const deleteList = (index) => {
     const newLists = [...lists];
     newLists.splice(index, 1);
-    // let first = newLists.slice(0, index);
-    // let second = newLists.slice(index + 1);
-    // first = first.concat(second)
-    // console.log(newLists, index, first)
     setList(newLists);
+ 
   }
 
   return(
     <div className="app">
       {lists.map((list, index) => (
-
-        <List 
-        list={list} 
-        key={index}
-        index={index}
-        updateList={updateList}
-        deleteList={deleteList}
-        />
+        <div key ={index}>
+          <List 
+          list={list} 
+          key={index}
+          index={index}
+          updateList={updateList}
+          deleteList={deleteList}
+          />
+        </div>
       ))}
       <button className="todo-list" onClick={() => addList()}>Add a New List!</button>
     </div>
@@ -84,25 +72,24 @@ const App = () => {
 
 
 const List = ({list, index, updateList, deleteList}) => {
-  const [todos, setTodos] = useState(
-    list
+  const [ , setTodos] = useState(
   )
 
   const addTodo = text => {
-    const newTodo = [...todos, { text }];
+    const newTodo = [...list, { text }];
     setTodos(newTodo);
     updateList(newTodo, index)
   }
   
   const completeTodo = todoIndex => {
-    const newTodo = [...todos];
+    const newTodo = [...list];
     newTodo[todoIndex].isCompleted = !newTodo[todoIndex].isCompleted;
     setTodos(newTodo);
     updateList(newTodo, index)
   }
   
   const removeTodo = todoIndex => {
-    const newTodo = [...todos];
+    const newTodo = [...list];
     newTodo.splice(todoIndex, 1);
     setTodos(newTodo);
     updateList(newTodo, index)
@@ -111,8 +98,10 @@ const List = ({list, index, updateList, deleteList}) => {
       <div className="todo-list" key={index}>
         <h3>
           List {index + 1}
+          <button onClick={() => deleteList(index)}>X</button>
+
         </h3>
-        {todos.map((todo, index) => (
+        {list.map((todo, index) => (
           <Todo 
             key={index} 
             todo={todo} 
