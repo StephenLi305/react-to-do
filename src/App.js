@@ -34,20 +34,17 @@ const App = () => {
   
   const addList = () => {
     const newLists = [...lists];
-    const newList = [{
-      text: "play basketball",
-      isCompleted: false
-    }];
+    const newList = [];
     newLists.push(newList);
     setList(newLists);
     console.log(newLists)
   }
-
+  
   const deleteList = (index) => {
     const newLists = [...lists];
     newLists.splice(index, 1);
     setList(newLists);
- 
+    console.log(newLists)
   }
 
   return(
@@ -97,9 +94,8 @@ const List = ({list, index, updateList, deleteList}) => {
   return (
       <div className="todo-list" key={index}>
         <h3>
-          List {index + 1}
-          <button onClick={() => deleteList(index)}>X</button>
-
+        <div>List {index + 1}</div>
+        <button onClick={() => deleteList(index)}>X</button>
         </h3>
         {list.map((todo, index) => (
           <Todo 

@@ -27,3 +27,19 @@
   align-items: center;
   justify-content: space-between;
 }
+
+h3 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+  margin: 10px 10px;
+
+}
+
+h3 button {
+  background: #fff;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  padding: 3px 10px;
+  margin-bottom: 6px;
+  border-radius: 3px;
+}
