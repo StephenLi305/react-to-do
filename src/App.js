@@ -55,14 +55,14 @@ const App = () => {
 
   const deleteList = (index) => {
     const newLists = [...lists];
-    // newLists.splice(index, 1);
-    let first = newLists.slice(0, index);
-    let second = newLists.slice(index + 1);
-    first = first.concat(second)
-    console.log(newLists, index, first)
-    setList(first);
+    newLists.splice(index, 1);
+    // let first = newLists.slice(0, index);
+    // let second = newLists.slice(index + 1);
+    // first = first.concat(second)
+    // console.log(newLists, index, first)
+    setList(newLists);
   }
-  
+
   return(
     <div className="app">
       {lists.map((list, index) => (
