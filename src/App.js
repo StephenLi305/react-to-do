@@ -19,17 +19,12 @@ const App = () => {
       ]
   ])
 
-  // useEffect(() => {
-  //   console.log('deleted')
-  // })
-
-
   const updateList = (list, index) => {
     const newLists = [...lists];
     newLists[index] = list;
     setList(newLists);
-    console.log(list)
-    console.log(newLists)
+    // console.log(list)
+    // console.log(newLists)
   }
   
   const addList = () => {
@@ -37,7 +32,7 @@ const App = () => {
     const newList = [];
     newLists.push(newList);
     setList(newLists);
-    console.log(newLists)
+    // console.log(newLists)
   }
   
   const deleteList = (index) => {
@@ -69,6 +64,8 @@ const App = () => {
 
 
 const List = ({list, index, updateList, deleteList}) => {
+  // want to use the same list from the props
+  // giving it a new variable meant I was modifying a new one, which mean I was still modifitying the state, but the render was rendinging just the number of list, and not the exact values. 
   const [ , setTodos] = useState(
   )
 
