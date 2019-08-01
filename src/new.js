@@ -10,26 +10,28 @@ import { start } from 'pretty-error';
 
 // 0 .... 20
 
-const App() => {
+const App = () => {
 
     const [second, setSecond] = useState(0);
     const [minute, setMintue] = useState(0);
     const [hour, setHour] = useState(0);
     const [started, setStarted] = useState(false);
+    const [intervalId, setIntervalId] = useState(null);
         
     const startTime = () => {
         if (started) {
-            clearInterval();
+            clearInterval(intervalId);
             setStarted(false);
+            setIntervalId(null);
         } else {
             setStarted(true);
-            setInterval(
+            setIntervalId(setInterval(
                 setSecond(second + 1)
-            , 1000)
+            , 1000))
         }
     }
 
-    componetDidUpdate( , prevState){
+    componetDidUpdate( props, prevState){
         prevSeconds = prevState.second;
         prevMinute = prevState.minute;
         prevHour = prevState.hour;
@@ -44,7 +46,7 @@ const App() => {
             setHour(prevHour + 1);
         }
     }
-    
+
     // compinentDidUpdate 
     // prev props, prev states
     // sec 59 -> 60 - >
@@ -54,14 +56,16 @@ const App() => {
     // if tine is greater than 60, time % 60  ex 61 1:01 
     // minute = time/ 60
 
-    const formatHour = 
+    const formatedHour = hour < 10 ? "0" + hour : hour
+    const formatedMinute = minute < 10 ? "0" + minute : minute
+    const formatedSecond = second < 10 ? "0" + second : second
     // if hour less then 10, 0 + hour, else hour
 
     return(
         <div>
-            <p>Hour:{formatHour}</p>
-            <p>Minute:{formatMintue}</p>
-            <p>Second:{second}</p>
+            <p>Hour:{formatedHour}</p>
+            <p>Minute:{formatedMinute}</p>
+            <p>Second:{formatedSecond}</p>
             <button onClick={startTime}>Start Time</button>
         </div>
     )
