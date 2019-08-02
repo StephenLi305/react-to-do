@@ -16,8 +16,9 @@ const StopWatch = () => {
         } else {
             setStarted(true);
             setIntervalId(() => setInterval(
+                // need to pass in second as an argument to the setSecond function to update it 
                 () => setSecond(second => second + 1)
-                , 10))
+                , 1000))
         }
     }
 
