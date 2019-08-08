@@ -21,6 +21,16 @@ const StopWatch = () => {
                 , 1000))
         }
     }
+    const resetTime = () => {
+        if (started) {
+            clearInterval(intervalId);
+            setIntervalId(null);
+            setStarted(false);
+        } 
+        setSecond(0);
+        setMintue(0);
+        setHour(0);
+    }
 
     useEffect(() => {
         // Same as ComponentDid Update
@@ -37,6 +47,7 @@ const StopWatch = () => {
     }, [second, minute, hour])
 
 
+
     const formatedHour = hour < 10 ? "0" + hour : hour
     const formatedMinute = minute < 10 ? "0" + minute : minute
     const formatedSecond = second < 10 ? "0" + second : second
@@ -47,6 +58,7 @@ const StopWatch = () => {
             <p>Minute:{formatedMinute}</p>
             <p>Second:{formatedSecond}</p>
             <button onClick={startTime}>{started ? "Stop Time" : "Start Time"}</button>
+            <button onClick={resetTime}>Reset Time</button>
         </div>
     )
 }
