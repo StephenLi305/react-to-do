@@ -41,19 +41,23 @@ const App = () => {
 
   return(
     <div className="app">
-      {lists.map((list, index) => (
-        <div key ={index}>
-          <List 
-          list={list} 
-          key={index}
-          index={index}
-          updateList={updateList}
-          deleteList={deleteList}
-          />
-        </div>
-      ))}
-      <button className="todo-list" onClick={() => addList()}>Add a New List!</button>
-      <StopWatch/>
+      <div className="app-items"> 
+        {lists.map((list, index) => (
+          <div key={index}>
+            <List
+              list={list}
+              key={index}
+              index={index}
+              updateList={updateList}
+              deleteList={deleteList}
+            />
+          </div>
+        ))}
+        <button className="todo-list" onClick={() => addList()}>Add a New List!</button>
+      </div>
+      <div className="app-items">
+        <StopWatch/>
+      </div>
     </div>
   )
 
@@ -82,7 +86,7 @@ const List = ({list, index, updateList, deleteList}) => {
     updateList(newTodos, index)
   }
   return (
-      <div className="todo-list" key={index}>
+      <div className="box" key={index}>
         <h3>
         <div>List {index + 1}</div>
         <button onClick={() => deleteList(index)}>X</button>

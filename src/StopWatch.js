@@ -53,10 +53,11 @@ const StopWatch = () => {
     const formatedSecond = second < 10 ? "0" + second : second
 
     return (
-        <div>
-            <p>Hour:{formatedHour}</p>
-            <p>Minute:{formatedMinute}</p>
-            <p>Second:{formatedSecond}</p>
+        <div className="box">
+            <h3>Stopwatch</h3>
+            <p>Hours:{formatedHour}</p>
+            <p>Minutes:{formatedMinute}</p>
+            <p>Seconds:{formatedSecond}</p>
             <button onClick={startTime}>{started ? "Stop Time" : "Start Time"}</button>
             <button onClick={resetTime}>Reset Time</button>
         </div>
