@@ -14,7 +14,7 @@ const App = () => {
           isCompleted: false
         },
         {
-          text: "play basketball",
+          text: "Play basketball",
           isCompleted: false
         }
       ]
@@ -53,7 +53,7 @@ const App = () => {
             />
           </div>
         ))}
-        <button className="todo-list" onClick={() => addList()}>Add a New List!</button>
+        <button className="box" onClick={() => addList()}>Add a new list!</button>
       </div>
       <div className="app-items">
         <StopWatch/>
