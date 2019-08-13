@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import StopWatch from './StopWatch'
+import Footer from './Footer';
 
 const App = () => {
   const [lists, setList] = useState([
@@ -58,6 +59,7 @@ const App = () => {
       <div className="app-items">
         <StopWatch/>
       </div>
+      <Footer/>
     </div>
   )
 
